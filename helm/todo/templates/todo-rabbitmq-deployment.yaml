@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: todo
+  namespace: {{ template "todo.fullname" . }}
   name: todo-rabbitmq
   labels:
     todo-app-deployment: todo-rabbitmq
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas.todoRabbitmq }}
   selector:
       matchLabels:
         todo-app-pod: todo-rabbitmq

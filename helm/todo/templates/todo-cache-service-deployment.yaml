@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: todo
+  namespace: {{ template "todo.fullname" . }}
   name: todo-cache-service
   labels:
     todo-app-deployment: todo-cache-service
 spec:
-  replicas: 2
+  replicas: {{ .Values.replicas.todoCacheService }}
   selector:
       matchLabels:
         todo-app-pod: todo-cache-service
@@ -23,7 +23,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: todo-cache-service
-        image: vladimir44/todo-cache-service:1.0
+        image: {{ .Values.todoImageUser }}/todo-cache-service:{{ .Values.todoVersion }}
         envFrom:
           - configMapRef:
               name: todo-config

@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: todo
-  name: todo-cache-ingestion
+  namespace: {{ template "todo.fullname" . }}
+  name: todo-search-ingestion
   labels:
-    todo-app-deployment: todo-cache-ingestion
+    todo-app-deployment: todo-search-ingestion
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas.todoSearchIngestion }}
   selector:
       matchLabels:
-        todo-app-pod: todo-cache-ingestion
+        todo-app-pod: todo-search-ingestion
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,18 +17,20 @@ spec:
       maxUnavailable: 1
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        todo-app-pod: todo-cache-ingestion
+        todo-app-pod: todo-search-ingestion
     spec:
       restartPolicy: Always
       initContainers:
       - name: init-rabbitmq
         image: busybox
         command: ['sh', '-c', 'until nslookup todo-rabbitmq; do echo waiting for RabbitMQ; sleep 2; done;']
+      - name: init-elastic
+        image: busybox
+        command: ['sh', '-c', 'until nslookup todo-elastic; do echo waiting for ElasticSearch; sleep 2; done;']
       containers:
-      - image: vladimir44/todo-cache-ingestion:1.0
-        name: todo-cache-ingestion
+      - name: todo-search-ingestion
+        image: {{ .Values.todoImageUser }}/todo-search-ingestion:{{ .Values.todoVersion }}
         envFrom:
           - configMapRef:
               name: todo-config

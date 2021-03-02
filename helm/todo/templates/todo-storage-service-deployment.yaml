@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: todo
+  namespace: {{ template "todo.fullname" . }}
   name: todo-storage-service
   labels:
     todo-app-deployment: todo-storage-service
 spec:
-  replicas: 2
+  replicas: {{ .Values.replicas.todoStorageService }}
   selector:
       matchLabels:
         todo-app-pod: todo-storage-service
@@ -22,7 +22,7 @@ spec:
     spec:
       restartPolicy: Always
       containers:
-      - image: vladimir44/todo-storage-service:1.0
+      - image: {{ .Values.todoImageUser }}/todo-storage-service:{{ .Values.todoVersion }}
         name: todo-storage-service
         envFrom:
           - configMapRef:

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: todo
+  namespace: {{ template "todo.fullname" . }}
   name: todo-view
   labels:
     todo-app-deployment: todo-view
@@ -23,7 +23,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: todo-view
-        image: vladimir44/todo-view:1.0
+        image: {{ .Values.todoImageUser }}/todo-view:{{ .Values.todoVersion }}
         ports:
         - containerPort: 4200
         - containerPort: 8080

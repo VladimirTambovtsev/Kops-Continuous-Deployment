@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: todo
+  namespace: {{ template "todo.fullname" . }}
   name: todo-cache-ingestion
   labels:
     todo-app-deployment: todo-cache-ingestion
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas.todoCacheIngestion }}
   selector:
       matchLabels:
         todo-app-pod: todo-cache-ingestion
@@ -27,7 +27,7 @@ spec:
         image: busybox
         command: ['sh', '-c', 'until nslookup todo-rabbitmq; do echo waiting for RabbitMQ; sleep 2; done;']
       containers:
-      - image: vladimir44/todo-cache-ingestion:1.0
+      - image: {{ .Values.todoImageUser }}/todo-cache-ingestion:{{ .Values.todoVersion }}
         name: todo-cache-ingestion
         envFrom:
           - configMapRef:

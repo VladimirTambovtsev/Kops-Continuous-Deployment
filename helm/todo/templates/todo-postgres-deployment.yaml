@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: todo
+  namespace: {{ template "todo.fullname" . }}
   name: todo-postgres
   labels:
     todo-app-deployment: todo-postgres
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas.todoPostgres }}
   selector:
       matchLabels:
         todo-app-pod: todo-postgres
@@ -20,7 +20,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: todo-postgres
-        image: vladimir44/todo-postgres:1.0
+        image: {{ .Values.todoImageUser }}/todo-postgres:{{ .Values.todoVersion }}
         envFrom:
         - configMapRef:
             name: todo-config
