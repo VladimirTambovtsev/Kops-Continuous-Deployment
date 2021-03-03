@@ -21,3 +21,4 @@ Starter app for Todo Cloud Kubernetes deployment.
 - [ ] Set up and configure VPC Firewall
 - [ ] Set up own cloud GitLab runners
 - [ ] Automate kops with Terraform
+- [ ] Update kops version on master nodes with zero downtime
