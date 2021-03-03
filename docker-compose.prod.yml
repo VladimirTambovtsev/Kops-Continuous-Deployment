@@ -3,54 +3,54 @@ version: "2"
 
 services:
   todo-postgres:
-    image: vladimir44/todo-postgres:1.0
+    image: vladimir44/todo-postgres:latest
 
   todo-cache-ingestion:
     build:
       dockerfile: ../Dockerfile.nodejs.prod
-    image: vladimir44/todo-cache-ingestion:1.0
+    image: vladimir44/todo-cache-ingestion:latest
 
   todo-cache-service:
     build:
       dockerfile: ../Dockerfile.nodejs.prod
-    image: vladimir44/todo-cache-service:1.0
+    image: vladimir44/todo-cache-service:latest
 
   todo-search-ingestion:
     build:
       dockerfile: ../Dockerfile.nodejs.prod
-    image: vladimir44/todo-search-ingestion:1.0
+    image: vladimir44/todo-search-ingestion:latest
     command: sh /home/node/app/start.sh
 
   todo-search-service:
     build:
       dockerfile: ../Dockerfile.nodejs.prod
-    image: vladimir44/todo-search-service:1.0
+    image: vladimir44/todo-search-service:latest
     command: sh /home/node/app/start.sh
 
   todo-storage-ingestion:
     build:
       dockerfile: ../Dockerfile.nodejs.prod
-    image: vladimir44/todo-storage-ingestion:1.0
+    image: vladimir44/todo-storage-ingestion:latest
     command: sh /home/node/app/start.sh
 
   todo-storage-service:
     build:
       dockerfile: ../Dockerfile.nodejs.prod
-    image: vladimir44/todo-storage-service:1.0
+    image: vladimir44/todo-storage-service:latest
 
   todo-api-gateway:
     build:
       dockerfile: ../Dockerfile.nodejs.prod
-    image: vladimir44/todo-api-gateway:1.0
+    image: vladimir44/todo-api-gateway:latest
     command: sh /home/node/app/start.sh
 
   todo-view:
     build:
       dockerfile: Dockerfile.prod
-    image: vladimir44/todo-view:1.0
+    image: vladimir44/todo-view:latest
     ports:
       - 4201:8080
 
   todo-proxy:
-    image: vladimir44/todo-proxy:1.0
+    image: vladimir44/todo-proxy:latest
 
