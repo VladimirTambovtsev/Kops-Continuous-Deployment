@@ -13,7 +13,8 @@ Starter app for Todo Cloud Kubernetes deployment.
 - [ ] Set up Perfomance Tests stage
 - [ ] Set up unit / integartional + code quality stage
 - [ ] Set up staging before production on main branch (Continous Delivery)
-Optional:
+
+#### Optional:
 - [ ] Set up self-hosted Sentry service
 - [ ] Set up self-hosted Confluence
 - [ ] Set up self-hosted Jira
