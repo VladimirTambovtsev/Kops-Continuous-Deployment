@@ -18,6 +18,7 @@ Starter app for Todo Cloud Kubernetes deployment.
 - [ ] Set up self-hosted Sentry service
 - [ ] Set up self-hosted Confluence
 - [ ] Set up self-hosted Jira
+- [ ] Set up self-hosted Gitlab server
 - [ ] Set up and configure VPC Firewall
 - [ ] Set up own cloud GitLab runners
 - [ ] Automate kops with Terraform
