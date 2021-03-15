@@ -1,6 +1,8 @@
 # My Todo Cloud K8s App
 
-Deploy and Run applications with Docker, Kubernetes, and Rancher Udemy Course.
+[![Build Status](https://travis-ci.org/VladimirTambovtsev/Rancher-K8S.svg?branch=main)](https://travis-ci.org/VladimirTambovtsev/Rancher-K8S)
+
+Deploy and Run applications with Docker, Helm3, Kubernetes.
 
 Starter app for Todo Cloud Kubernetes deployment.
 
